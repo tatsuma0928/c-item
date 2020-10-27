@@ -76,3 +76,41 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## itemsテーブル
+|column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+|introduction|text|null:false|
+|user_id|references|null:false,foreign_key:true|
+|price|integer|null:false|
+|brand_id|----|-----|
+### Association
+- belongs_to :user
+- belongs_to :brand
+- has_many :images
+
+## brandsテーブル
+|column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+### Association
+- has_many :items
+
+## imagesテーブル
+|column|Type|Options|
+|------|----|-------|
+|src|string|null:false|
+|item_id|references|foreign_key:true|
+### Association
+- belongs_to :item
+
+## usersテーブル
+|column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false, unique: true|
+|email|string|null: false, unique: true|
+|password|string|null: false|
+### Association
+- has_many :items
